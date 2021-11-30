@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 15:40:03 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/11/30 16:17:29 by dpaccagn         ###   ########.fr       */
+/*   Created: 2021/11/30 16:08:26 by dpaccagn          #+#    #+#             */
+/*   Updated: 2021/11/30 16:26:46 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "get_next_line.h"
 
-char	*get_next_line(int fd)
-{
-	int		BUFFER_SIZE;
-	int		ret;
-	char	*buff;
+char	*get_next_line(int fd);
 
-	BUFFER_SIZE = 10;
-	buff = malloc (sizeof (char) * BUFFER_SIZE + 1);
-	if (!buff)
-		return (NULL);
-	ret = read(fd, buff, BUFFER_SIZE);
-	buff[ret] = '\0';
-	return (buff);
+int	main(int ac, char **av)
+{
+    int fd;
+    (void)ac;
+    fd = open(av[1], O_RDONLY);
+	char	*test = get_next_line(fd);
+	printf ("%s\n", test);
+    close(fd);
+    return (0);
 }

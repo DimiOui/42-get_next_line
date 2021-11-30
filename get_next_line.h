@@ -6,7 +6,7 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:53 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/11/30 15:56:35 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/11/30 16:19:38 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define GET_NEXT_LINE_H
 
 # include <stddef.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
 size_t	ft_strlen(const char *str);
 //	calculates the length of a string
