@@ -6,7 +6,7 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:08:26 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/11/30 16:26:46 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/01 10:59:56 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 
 char	*get_next_line(int fd);
 
-int	main(int ac, char **av)
+int main(int ac, char **av)
 {
+    char *line;
     int fd;
     (void)ac;
     fd = open(av[1], O_RDONLY);
-	char	*test = get_next_line(fd);
-	printf ("%s\n", test);
+    while((line = get_next_line(fd)) != NULL)
+    {
+        printf("%s", line);
+        free(line);
+    }
     close(fd);
     return (0);
 }
