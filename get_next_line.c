@@ -6,7 +6,7 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:03 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/01 17:05:33 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:14:22 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*get_line(char *s_buff)
 	return (line);
 }
 
-void	get_reader(int	fd, char *s_buff)
+void	get_reader(int fd, char *s_buff)
 {
 	int		ret;
 	char	buff[BUFFER_SIZE + 1];
@@ -54,37 +54,10 @@ void	get_reader(int	fd, char *s_buff)
 char	*get_next_line(int fd)
 {
 	static char	*s_buff = "";
+	char		*line;
 
-	if(!(ft_strchr(s_buff, '\n')))
+	if (!(ft_strchr(s_buff, '\n')))
 		get_reader(fd, s_buff);
-	get_line(s_buff);
+	line = get_line(s_buff);
+	return (line);
 }
-
-/*
-int		get_len(char *str)
-{
-	int	i;
-
-	i = 0;
-	while(str[i] != '\n')
-		i++;
-	return (i);
-}
-
-char	*get_next_line(int fd)
-{
-	int			ret;
-	char		*buff;
-
-	buff = malloc (sizeof (char) * BUFFER_SIZE + 1);
-	if (!buff)
-		return (NULL);
-	ret = read(fd, buff, BUFFER_SIZE);
-	if (ft_strchr(buff, '\n'))
-	{
-		buff = ft_substr(buff, 0, get_len(buff));
-	};
-	buff[ret] = '\0';
-	return (buff);
-}
-*/
