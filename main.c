@@ -6,7 +6,7 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:08:26 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/01 17:15:31 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:15:45 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 char	*get_next_line(int fd);
 
-intmain(int ac, char **av)
+int main(int ac, char **av)
 {
     char *line;
     int fd;
