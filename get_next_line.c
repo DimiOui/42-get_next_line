@@ -6,7 +6,7 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:03 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/02 13:47:45 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:24:13 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ static char	*get_line(char **s_buff)
 }
 
 //	--------------------------------------------------------------------------//
-//	get_line will return NULL if s_buff is empty							  //
-//	else, we enter a loop where we iterate through s_buff with our index 'i'  //
-//	as we encounter a line break, or the end of s_buff.						  //
-//	if s_buff is a line break, i++ will allow us to start from AFTER the line //
-//	break the next time we call s_buff. We then fill line correctly with	  //
-//	s_buff. Finally, we fill the remainder to tmp_buff to free s_buff, then	  //
-//	refill it again. Line is then returned.									  //
+//	get_line will return NULL if s_buff is empty
+//	else, we enter a loop where we iterate through s_buff with our index 'i'
+//	as we encounter a line break, or the end of s_buff.
+//	if s_buff is a line break, i++ will allow us to start from AFTER the line
+//	break the next time we call s_buff. We then fill line correctly with
+//	s_buff. Finally, we fill the remainder to tmp_buff to free s_buff, then
+//	refill it again. Line is then returned.
 //	--------------------------------------------------------------------------//
 
 static void	get_reader(int fd, char **s_buff)
@@ -48,6 +48,8 @@ static void	get_reader(int fd, char **s_buff)
 	char	buff[BUFFER_SIZE + 1];
 	char	*tmp_buff;
 
+	if (BUFFER_SIZE > 8000000)
+		return ;
 	ret = read(fd, buff, BUFFER_SIZE);
 	while (ret > 0)
 	{
@@ -65,16 +67,16 @@ static void	get_reader(int fd, char **s_buff)
 }
 
 //	--------------------------------------------------------------------------//
-//	get_reader will read the buffer and store the 'read' cursor in ret a first//
-//	time. We then enter our main loop. The loop iterates as long as the ret   //
-//	value is greater than zero. So as long as there is something to read	  //
-//	(ret = 0 is EOF).														  //
-//	buff[ret] = '\0' to notify the end of the buff string					  //
-//	We then store all our buffer into a temporary buff to free s_buff of all  //
-//	the remains. Then pour back tmp_buff to s_buff.							  //
-//	We then look for the next line break into s_buff, and returns the remain- //
-//	der. Finally to end the loop, we keep reading in case we didn't encounter //
-// a line break or the EOF													  //
+//	get_reader will read the buffer and store the 'read' cursor in ret a first
+//	time. We then enter our main loop. The loop iterates as long as the ret
+//	value is greater than zero. So as long as there is something to read
+//	(ret = 0 is EOF).
+//	buff[ret] = '\0' to notify the end of the buff string
+//	We then store all our buffer into a temporary buff to free s_buff of all
+//	the remains. Then pour back tmp_buff to s_buff.
+//	We then look for the next line break into s_buff, and returns the remain-
+//	der. Finally to end the loop, we keep reading in case we didn't encounter
+// a line break or the EOF
 //	--------------------------------------------------------------------------//
 
 char	*get_next_line(int fd)
@@ -82,6 +84,8 @@ char	*get_next_line(int fd)
 	static char	*s_buff = NULL;
 	char		*line;
 
+	if (fd < 0)
+		return (NULL);
 	if (!s_buff || !(ft_strchr(s_buff, '\n')))
 		get_reader(fd, (&s_buff));
 	line = get_line(&s_buff);
@@ -89,11 +93,11 @@ char	*get_next_line(int fd)
 }
 
 //	--------------------------------------------------------------------------//
-//	GNL takes the file descriptor as a parameter and returns the first line   //
-//	read until it encounters a line break or the end of the file			  //
-//																			  //
-//	The first 'if' applies if there's a line break in s_buff. Because s_buff  //
-//	is first declared as an empty string, we directly go through 'line = ...' //
-//	The funtion will then call get_reader (see get_reader comment)			  //
-//	Line is then returned with get_line (see get_line comment)				  //
+//	GNL takes the file descriptor as a parameter and returns the first line
+//	read until it encounters a line break or the end of the file
+//
+//	The first 'if' applies if there's a line break in s_buff. Because s_buff
+//	is first declared as an empty string, we directly go through 'line = ...
+//	The funtion will then call get_reader (see get_reader comment)
+//	Line is then returned with get_line (see get_line comment)
 //	--------------------------------------------------------------------------//

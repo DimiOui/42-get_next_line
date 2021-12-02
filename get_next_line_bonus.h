@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 16:08:26 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/02 17:24:14 by dpaccagn         ###   ########.fr       */
+/*   Created: 2021/11/30 15:40:53 by dpaccagn          #+#    #+#             */
+/*   Updated: 2021/12/02 14:33:02 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "get_next_line.h"
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
+# include <stddef.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+
+size_t	ft_strlen(const char *str);
+char	*ft_strdup(const char *src);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(const char *s1, const char *s2);
+char	*ft_substr(const char *s, unsigned int start, size_t len);
 char	*get_next_line(int fd);
 
-int main(int ac, char **av)
-{
-    char *line;
-    int fd;
-    (void)ac;
-    fd = open(av[1], O_RDONLY);
-    while((line = get_next_line(fd)) != NULL)
-    {
-        printf("%s", line);
-        free(line);
-    }
-    close(fd);
-    return (0);
-}
+#endif
