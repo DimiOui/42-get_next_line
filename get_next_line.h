@@ -6,7 +6,7 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:53 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/02 12:10:53 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/02 13:47:51 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ char	*ft_strdup(const char *src);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
+char	*get_next_line(int fd);
 
 #endif

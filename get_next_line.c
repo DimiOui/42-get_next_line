@@ -6,7 +6,7 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:03 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/02 12:12:44 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/02 13:47:45 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static char	*get_line(char **s_buff)
 	char	*tmp_buff;
 	int		i;
 
-	i = 0;
-	if ((*s_buff[0]) == '\0')
+	if (!*s_buff || (*s_buff[0]) == '\0')
 		return (NULL);
+	i = 0;
 	while ((*s_buff)[i] != '\n' && (*s_buff)[i] != 0)
 		i++;
 	if ((*s_buff)[i] == '\n')
@@ -52,9 +52,11 @@ static void	get_reader(int fd, char **s_buff)
 	while (ret > 0)
 	{
 		buff[ret] = '\0';
-		tmp_buff = ft_strjoin((*s_buff), buff);
-		if (*s_buff[0] != '\0')
-			free (*s_buff);
+		if (!*s_buff)
+			tmp_buff = ft_strdup(buff);
+		else
+			tmp_buff = ft_strjoin((*s_buff), buff);
+		free (*s_buff);
 		(*s_buff) = tmp_buff;
 		if (ft_strchr((*s_buff), '\n'))
 			return ;
@@ -77,10 +79,10 @@ static void	get_reader(int fd, char **s_buff)
 
 char	*get_next_line(int fd)
 {
-	static char	*s_buff = "";
+	static char	*s_buff = NULL;
 	char		*line;
 
-	if (!(ft_strchr(s_buff, '\n')))
+	if (!s_buff || !(ft_strchr(s_buff, '\n')))
 		get_reader(fd, (&s_buff));
 	line = get_line(&s_buff);
 	return (line);
