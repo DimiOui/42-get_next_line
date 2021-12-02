@@ -6,7 +6,7 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:40 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/01 10:21:35 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/02 11:28:18 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ char	*ft_strchr(const char *s, int c)
 	size_t	i;
 
 	i = 0;
+	if (!s || !c)
+		return (NULL);
 	while (s[i])
 	{
 		if (s[i] == (char)c)

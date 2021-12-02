@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Dimi <Dimi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:03 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/01 21:37:42 by Dimi             ###   ########.fr       */
+/*   Updated: 2021/12/02 11:35:47 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*get_line(char **s_buff)
+static char	*get_line(char **s_buff)
 {
 	char	*line;
 	char	*tmp_buff;
@@ -42,7 +42,7 @@ char	*get_line(char **s_buff)
 //	refill it again. Line is then returned.									  //
 //	--------------------------------------------------------------------------//
 
-void	get_reader(int fd, char **s_buff)
+static void	get_reader(int fd, char **s_buff)
 {
 	int		ret;
 	char	buff[BUFFER_SIZE + 1];
@@ -53,7 +53,8 @@ void	get_reader(int fd, char **s_buff)
 	{
 		buff[ret] = '\0';
 		tmp_buff = ft_strjoin((*s_buff), buff);
-		free (*s_buff);
+		if (*s_buff[0] != '\0')
+			free (*s_buff);
 		(*s_buff) = tmp_buff;
 		if (ft_strchr((*s_buff), '\n'))
 			return ;
@@ -79,6 +80,8 @@ char	*get_next_line(int fd)
 	static char	*s_buff = "";
 	char		*line;
 
+	if (fd < 0)
+		return (NULL);
 	if (!(ft_strchr(s_buff, '\n')))
 		get_reader(fd, (&s_buff));
 	line = get_line(&s_buff);
