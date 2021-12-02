@@ -6,7 +6,7 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:03 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/02 11:35:47 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/02 12:11:18 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*get_line(char **s_buff)
 	int		i;
 
 	i = 0;
-	if ((*s_buff) == 0)
+	if ((*s_buff[0]) == '\0')
 		return (NULL);
 	while ((*s_buff)[i] != '\n' && (*s_buff)[i] != 0)
 		i++;
@@ -80,8 +80,6 @@ char	*get_next_line(int fd)
 	static char	*s_buff = "";
 	char		*line;
 
-	if (fd < 0)
-		return (NULL);
 	if (!(ft_strchr(s_buff, '\n')))
 		get_reader(fd, (&s_buff));
 	line = get_line(&s_buff);
