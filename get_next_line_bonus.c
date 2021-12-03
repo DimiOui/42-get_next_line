@@ -6,7 +6,7 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:03 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/03 11:25:38 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/03 12:05:51 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	get_reader(int fd, char **s_buff)
 
 char	*get_next_line(int fd)
 {
-	static char	**s_buff = NULL;
+	static char	*s_buff[1024];
 	char		*line;
 	int			i;
 
@@ -66,9 +66,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (s_buff == NULL)
 	{
-		s_buff = (char **)malloc(sizeof(char *) * 1024);
-		if (!s_buff)
-			return (NULL);
 		i = 0;
 		while (i < 1023)
 		{
@@ -81,4 +78,3 @@ char	*get_next_line(int fd)
 	line = get_line(&s_buff[fd]);
 	return (line);
 }
-

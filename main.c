@@ -6,7 +6,7 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:08:26 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/03 11:25:48 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/03 12:06:52 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int main(int ac, char **av)
         close(fd);
         fd = 0;
     }
+    //if (fd == -1)
+    //    fd = 1;
     while((line = get_next_line(fd)) != NULL)
     {
         printf("%s", line);
