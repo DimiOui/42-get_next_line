@@ -6,7 +6,7 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:03 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/03 12:26:33 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/05 17:42:17 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,19 @@ static char	*get_line(char **s_buff)
 	int		i;
 
 	if (!*s_buff || (*s_buff[0]) == '\0')
+	{
+		free (*s_buff);
 		return (NULL);
+	}
 	i = 0;
 	while ((*s_buff)[i] != '\n' && (*s_buff)[i] != 0)
 		i++;
 	if ((*s_buff)[i] == '\n')
 		i++;
-	line = ft_substr((*s_buff), 0, i);
-	tmp_buff = ft_substr((*s_buff), i, ft_strlen(*s_buff));
+	line = ft_substr(*s_buff, 0, i);
+	tmp_buff = ft_substr(*s_buff, i, ft_strlen(*s_buff));
 	free(*s_buff);
-	(*s_buff) = tmp_buff;
+	*s_buff = tmp_buff;
 	return (line);
 }
 
@@ -57,10 +60,10 @@ static void	get_reader(int fd, char **s_buff)
 		if (!*s_buff)
 			tmp_buff = ft_strdup(buff);
 		else
-			tmp_buff = ft_strjoin((*s_buff), buff);
+			tmp_buff = ft_strjoin(*s_buff, buff);
 		free (*s_buff);
-		(*s_buff) = tmp_buff;
-		if (ft_strchr((*s_buff), '\n'))
+		*s_buff = tmp_buff;
+		if (ft_strchr(*s_buff, '\n'))
 			return ;
 		ret = read(fd, buff, BUFFER_SIZE);
 	}
@@ -87,7 +90,7 @@ char	*get_next_line(int fd)
 	if (fd < 0)
 		return (NULL);
 	if (!s_buff || !(ft_strchr(s_buff, '\n')))
-		get_reader(fd, (&s_buff));
+		get_reader(fd, &s_buff);
 	line = get_line(&s_buff);
 	return (line);
 }
