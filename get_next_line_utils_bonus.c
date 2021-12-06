@@ -6,11 +6,11 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:40 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/02 14:06:53 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/06 12:49:46 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *str)
 {
