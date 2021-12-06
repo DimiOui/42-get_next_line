@@ -6,7 +6,7 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:03 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/06 10:48:30 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/06 11:58:49 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	get_reader(int fd, char **s_buff)
 	char	buff[BUFFER_SIZE + 1];
 	char	*tmp_buff;
 
-	if (BUFFER_SIZE < 0 && BUFFER_SIZE > 8000000)
+	if (BUFFER_SIZE < 0 || BUFFER_SIZE > 8000000)
 		return ;
 	ret = read(fd, buff, BUFFER_SIZE);
 	while (ret > 0)
@@ -65,6 +65,8 @@ char	*get_next_line(int fd)
 	static char	*s_buff[1024];
 	char		*line;
 
+	if (BUFFER_SIZE < 0 || BUFFER_SIZE > 8000000)
+		return (NULL);
 	if (fd < 0)
 		return (NULL);
 	if (!s_buff[fd] || !(ft_strchr(s_buff[fd], '\n')))
