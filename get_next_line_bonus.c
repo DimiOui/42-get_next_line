@@ -6,7 +6,7 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:03 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/06 11:58:49 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/06 12:15:40 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,3 +74,11 @@ char	*get_next_line(int fd)
 	line = get_line(&s_buff[fd]);
 	return (line);
 }
+
+//	--------------------------------------------------------------------------//
+//	get_next_line bonus will still only use only one static variable and read
+//	from multiple fd's
+//	Only difference is, we fill our buffer with an array of size 1024 (maximum
+//	number of fd's that can be opened at once)
+//	Malloc frees are doing accordingly in get_line
+//	--------------------------------------------------------------------------//
