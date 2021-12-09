@@ -6,12 +6,14 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:53 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/06 10:47:41 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/09 12:07:14 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
+
+# define FD_MAX 1024;
 
 # include <stddef.h>
 # include <stdlib.h>
