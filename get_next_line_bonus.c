@@ -6,7 +6,7 @@
 /*   By: dpaccagn <dpaccagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:03 by dpaccagn          #+#    #+#             */
-/*   Updated: 2021/12/06 12:45:30 by dpaccagn         ###   ########.fr       */
+/*   Updated: 2021/12/09 10:03:35 by dpaccagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*get_next_line(int fd)
 
 	if (BUFFER_SIZE < 0 || BUFFER_SIZE > 8000000)
 		return (NULL);
-	if (fd < 0)
+	if (fd < 0 || fd > 1024)
 		return (NULL);
 	if (!s_buff[fd] || !(ft_strchr(s_buff[fd], '\n')))
 		get_reader(fd, (&s_buff[fd]));
