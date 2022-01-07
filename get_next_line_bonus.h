@@ -13,7 +13,7 @@
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
-# define FD_MAX 1024;
+# define FD_MAX 1024
 
 # include <stddef.h>
 # include <stdlib.h>
